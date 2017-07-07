@@ -71,7 +71,6 @@ Keep in mind that there are many ways of doing inheritance in JavaScript, and th
 
 Exercise
 --------
-
 Create an object called `Teacher` derived from the `Person` class, and implement a method called `teach` which receives a string called `subject`, and prints out:
 
     [teacher's name] is now teaching [subject]
@@ -110,9 +109,63 @@ Person.prototype.initialize = function(name, age)
     this.age = age;
 }
 
-// TODO: create the class Teacher and a method teach
+// TODO: create the class Teacher, a method teach, and a new Teacher
 var Teacher = function() {
     this.teach = function(subject){
+        console.log(this.name + " is now teaching " + subject);
+    }
+}
+Teacher.prototype = new Person();
+var him = new Teacher();
+
+him.initialize("Adam", 45);
+him.teach("Inheritance");
+
+Exercise
+--------
+
+Repeat the previous exercie this time using the prototype attribute when implementing `teach` method. Create an object called `Teacher` derived from the `Person` class implementing a method called `teach`  which receives a string called `subject`, and prints out:
+
+    [teacher's name] is now teaching [subject]
+
+
+Tutorial Code
+-------------
+
+var Person = function() {};
+
+Person.prototype.initialize = function(name, age)
+{
+    this.name = name;
+    this.age = age;
+}
+
+// TODO: create the class Teacher and a method teach
+
+var him = new Teacher();
+
+him.initialize("Adam", 45);
+him.teach("Inheritance");
+
+Expected Output
+---------------
+
+Adam is now teaching Inheritance
+
+Solution
+--------
+
+var Person = function() {};
+
+Person.prototype.initialize = function(name, age)
+{
+    this.name = name;
+    this.age = age;
+}
+
+// TODO: create the class Teacher and a method teach
+var Teacher = function() {
+    Teacher.prototype.teach = function(subject){
         console.log(this.name + " is now teaching " + subject);
     }
 }
